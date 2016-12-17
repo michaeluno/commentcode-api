@@ -93,25 +93,23 @@ Double check you insert it in the `View` panel of the editor.
 == Other Notes ==
 
 <h4>Register a Commentcode</h4>
+Use the `add_filter()` function with the filter name of `commentcode_tag_{your commentcode tag name}`.
 
-Use the `add_commentcode()` function.
-- 1. ( string ) The tag name.
-- 2. ( callable ) A callback function which gets called when the commentcode gets processed.
 `
 function get_my_commentcode( $arguments ) {
     return "<pre>" . htmlspecialchars( print_r( $arguments, true ) ) . "</pre>";
 }
-add_commentcode( 'my_commentcode', 'get_my_commentcode' );
+add_filter( 'commentcode_tag_' . 'my_commentcode', 'get_my_commentcode' );
 `
 
-For a test, by running the above code, try inserting `<!---my_commentcode foo="bar" array[]="one" array[]="two"--->` in a post.
+For a test, while running the above code, try inserting `<!---my_commentcode Foo="bar" numbers[ 1 ]="one" numbers[ 2 ]="two"--->` in a post.
 
 It will produce this output,
 `
 Array
 (
-    [foo] => bar
-    [array] => Array
+    [Foo] => bar
+    [numbers] => Array
         (
             [0] => one
             [1] => two
