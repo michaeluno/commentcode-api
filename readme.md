@@ -17,10 +17,34 @@ This way even the user disables your plugin, the embedded code will not be visib
 1. Upload **`commentcode-api.php`** and other files compressed in the zip folder to the **`/wp-content/plugins/`** directory.,
 2. Activate the plugin through the `Plugins` menu in WordPress.
 
-## How to Use ##
+## Usage ##
+<h4>Register a Commentcode</h4>
 
-1. Upload **`commentcode-api.php`** and other files compressed in the zip folder to the **`/wp-content/plugins/`** directory.
-2. Activate the plugin through the 'Plugins' menu in WordPress.
+Use the `add_commentcode()` function.
+1. ( string ) The tag name.
+2. ( callable ) A callback function which gets called when the commentcode gets processed.
+```
+function get_my_commentcode( $arguments ) {
+    return "<pre>" . htmlspecialchars( print_r( $arguments, true ) ) . "</pre>";
+}
+add_commentcode( 'my_commentcode', 'get_my_commentcode' );
+```
+
+For a test, by running the above code, try inserting `<!---my_commentcode foo="bar" array[]="one" array[]="two"--->` in a post.
+
+It will produce this output,
+```
+Array
+(
+    [foo] => bar
+    [array] => Array
+        (
+            [0] => one
+            [1] => two
+        )
+
+)
+```
 
 ## Bugs ##
 If you find an issue, let us know [here](https://github.com/michaeluno/commentcode-api/issues)!
