@@ -20,10 +20,12 @@ This way even the user disables your plugin, the embedded code will not be visib
 ## Usage ##
 <h4>Register a Commentcode</h4>
 Use the `add_commentcode()` function. It accepts two parameters.
+
 1. (string) the commentcode tag.
 2. (callable) a callback function which gets called when the commentcode of the specified tag is processed.
 
 The callback function receives two parameters.
+
 1. (string) The filtered text, usually an empty string.
 2. (array) The attributes set in the commentcode.
 ```php
@@ -36,6 +38,7 @@ add_commentcode( 'my_commentcode', 'get_my_commentcode' );
 Or use the `add_filter()` function with the filter name of `commentcode_tag_{your commentcode tag name}`.
 
 The callback function receives two parameters.
+
 1. (string) The filtered text, usually an empty string.
 2. (array) The attributes set in the commentcode.
 
