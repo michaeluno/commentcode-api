@@ -93,13 +93,31 @@ Double check you insert it in the `View` panel of the editor.
 == Other Notes ==
 
 <h4>Register a Commentcode</h4>
-Use the `add_filter()` function with the filter name of `commentcode_tag_{your commentcode tag name}`.
 
+Use the `add_commentcode()` function. It accepts two parameters.
+1. (string) the commentcode tag.
+2. (callable) a callback function which gets called when the commentcode of the specified tag is processed.
+
+The callback function receives two parameters.
+1. (string) The filtered text, usually an empty string.
+2. (array) The attributes set in the commentcode.
 `
-function get_my_commentcode( $arguments ) {
+function get_my_commentcode( $text, $arguments ) {
     return "<pre>" . htmlspecialchars( print_r( $arguments, true ) ) . "</pre>";
 }
-add_filter( 'commentcode_tag_' . 'my_commentcode', 'get_my_commentcode' );
+add_commentcode( 'my_commentcode', 'get_my_commentcode' );
+`
+
+Or use the `add_filter()` function with the filter name of `commentcode_tag_{your commentcode tag name}`.
+
+The callback function receives two parameters.
+1. (string) The filtered text, usually an empty string.
+2. (array) The attributes set in the commentcode.
+`
+function get_my_commentcode( $text, $arguments ) {
+    return "<pre>" . htmlspecialchars( print_r( $arguments, true ) ) . "</pre>";
+}
+add_filter( 'commentcode_tag_' . 'my_commentcode', 'get_my_commentcode', 10, 2 );
 `
 
 For a test, while running the above code, try inserting `<!---my_commentcode Foo="bar" numbers[ 1 ]="one" numbers[ 2 ]="two"--->` in a post.

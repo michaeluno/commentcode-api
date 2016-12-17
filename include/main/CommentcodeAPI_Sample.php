@@ -14,11 +14,12 @@ class CommentcodeAPI_Sample {
     }
 
     /**
-     * @param       string      $sContent
+     * @param       string      $sText
+     * @param       string      $aArguments
      * @callback    filter      commentcode_content
      * @return      string
      */
-    public function replyToPrintArguments( $aArguments ) {
+    public function replyToPrintArguments( $sText, $aArguments ) {
         return "<pre>"
                 . htmlspecialchars( print_r( $aArguments, true ) )
             . "</pre>";

@@ -35,14 +35,13 @@ class CommentcodeAPI_Parser {
          * @return      string
          */
         private function ___replyToReplaceCommentCode( $aMatches ) {
-            $_sCommentCode  = trim( $aMatches[ 1 ] );
-            $_aParts        = $this->___getParts( $_sCommentCode );
-            $_sAttributes   = $_aParts[ 'attributes' ];
-            $_aArguments    = $this->___getArguments( $_sAttributes );
-            $_sWPFilterName = 'commentcode_tag_' . $_aParts[ 'tag' ];
-            return has_filter( $_sWPFilterName )
-                ? apply_filters( $_sWPFilterName, $_aArguments, $_aParts[ 'tag' ] )
-                : '';
+            $_aParts        = $this->___getParts( trim( $aMatches[ 1 ] ) );
+            return apply_filters(
+                'commentcode_tag_' . $_aParts[ 'tag' ],     // filter hook name
+                '', // string to be filtered
+                $this->___getArguments( $_aParts[ 'attributes' ] ),    // 1st parameter - attributes
+                $_aParts[ 'tag' ]   // 2nd parameter - the commentcode tag
+            );
         }
             /**
              * @since  0.1.0
