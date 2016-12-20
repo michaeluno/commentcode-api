@@ -3,11 +3,11 @@
  * Plugin Name:     Commentcode API
  * Plugin URI:      http://en.michaeluno.jp/commentcode-api
  * Description:     A shortcode alternative API.
- * Version:         0.2.0
+ * Version:         0.3.0
  * Author:          Michael Uno
  * Author URI:      http://en.michaeluno.jp
  * License:         GPL2 or Later
- **/
+ */
 
 /**
  * Provides the basic information about the plugin.
@@ -16,7 +16,7 @@
  */
 class CommentcodeAPI_Registry_Base {
 
-    const VERSION        = '0.2.0';    // <--- DON'T FORGET TO CHANGE THIS AS WELL!!
+    const VERSION        = '0.3.0';    // <--- DON'T FORGET TO CHANGE THIS AS WELL!!
     const NAME           = 'Commentcode API';
     const DESCRIPTION    = 'A shortcode alternative API.';
     const URI            = 'http://en.michaeluno.jp/commentcode-api';
