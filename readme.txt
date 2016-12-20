@@ -129,8 +129,8 @@ Array
     [Foo] => bar
     [numbers] => Array
         (
-            [0] => one
-            [1] => two
+            [1] => one
+            [2] => two
         )
 
 )
