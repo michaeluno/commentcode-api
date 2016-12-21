@@ -1,7 +1,7 @@
 === Commentcode API ===
-Contributors:       [COPYRIGHT_HOLDER], miunosoft
+Contributors:       Michael Uno, miunosoft
 Donate link:        http://en.michaeluno.jp/donate
-Tags:               template, plugin
+Tags:               commentcode, API, shortcode, HTML comments
 Requires at least:  3.4
 Tested up to:       4.7.0
 Stable tag:         1.0.0
