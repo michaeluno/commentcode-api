@@ -1,7 +1,7 @@
 <?php
 
 /**
- * A enclosing comentcode parser.
+ * A enclosing commentcode parser.
  *
  * ```
  * <!--- my_commentcode color="#FFF" name="white" --->Some text.<!---/my_commentcode --->
@@ -42,10 +42,10 @@ class CommentcodeAPI_Parser_Enclosing extends CommentcodeAPI_Parser_Base {
      */
     protected function _replyToReplaceCommentcode( $aMatches ) {
         return apply_filters(
-            'commentcode_tag_' . $aMatches[ 'tag' ],      // filter hook name
-            $this->_getTextParsed( $aMatches[ 'innerhtml' ] ), // 1st parameter:  string to be filtered - parse nested items.
-            $this->_getArguments( $aMatches[ 'attr' ] ),  // 2st parameter - attributes
-            $aMatches[ 'tag' ]   // 3nd parameter - the commentcode tag
+            'commentcode_tag_' . $aMatches[ 'tag' ],            // filter hook name
+            $this->_getTextParsed( $aMatches[ 'innerhtml' ] ),  // 1st parameter:  string to be filtered - parse nested items.
+            $this->_getArguments( $aMatches[ 'attr' ] ),        // 2st parameter - attributes
+            $aMatches[ 'tag' ]                                  // 3nd parameter - the commentcode tag
         );
     }
 

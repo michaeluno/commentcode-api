@@ -1,7 +1,7 @@
 <?php
 
 /**
- * A base class of comentcode parsers.
+ * A base class of commentcode parsers.
  *
  * @since   0.3.0
  */
