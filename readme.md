@@ -1,15 +1,14 @@
-# [Commentcode API](http://wordpress.org/plugins/commentcode-api/) #
+# [Commentcode API](http://wordpress.org/plugins/commentcode-api/)
 
-### Welcome to our GitHub Repository
+## Abstract
 
-Commentcode API is an open source WordPress plugin that lets you generate custom outputs with HTML comment like codes.  
+Commentcode API lets you generate custom outputs with HTML comment-like codes.  
 
-It is similar to the [shortcode API](https://codex.wordpress.org/Shortcode_API) except it takes a form of HTML comments.
+It is similar to the [shortcode API](https://codex.wordpress.org/Shortcode_API) except it takes a form of HTML comments and a few features.
 
-This way even the user disables your plugin, the embedded code will not be visible, on contrary to shortcodes that remain in posts when their plugins are deactivated. 
+Since it takes a form of HTML comments, even the user disables your plugin, the embedded code will not be visible, on contrary to shortcodes that remain in posts when their plugins are deactivated. 
 
-
-## Installation ##
+## Installation
 
 - The latest development version can be found [here](https://github.com/michaeluno/commentcode-api/branches). 
 - The latest stable version can be downloaded [here](http://downloads.wordpress.org/plugin/commentcode-api.latest-stable.zip).
@@ -17,42 +16,29 @@ This way even the user disables your plugin, the embedded code will not be visib
 1. Upload **`commentcode-api.php`** and other files compressed in the zip folder to the **`/wp-content/plugins/`** directory.,
 2. Activate the plugin through the `Plugins` menu in WordPress.
 
-## Usage ##
+## Usage 
 <h4>Register a Commentcode</h4>
-Use the `add_commentcode()` function. It accepts two parameters.
 
+Use the `add_commentcode()` function. It accepts two parameters.
 1. (string) the commentcode tag.
 2. (callable) a callback function which gets called when the commentcode of the specified tag is processed.
 
-The callback function receives two parameters.
-
+The callback function receives three parameters.
 1. (string) The filtered text, usually an empty string.
 2. (array) The attributes set in the commentcode.
+3. (string) The commentcode tag name.
+
 ```php
-function get_my_commentcode( $text, $arguments ) {
+function get_my_commentcode( $text, $arguments, $tag ) {
     return "<pre>" . htmlspecialchars( print_r( $arguments, true ) ) . "</pre>";
 }
 add_commentcode( 'my_commentcode', 'get_my_commentcode' );
 ```
 
-Or use the `add_filter()` function with the filter name of `commentcode_tag_{your commentcode tag name}`.
-
-The callback function receives two parameters.
-
-1. (string) The filtered text, usually an empty string.
-2. (array) The attributes set in the commentcode.
-
-```php
-function get_my_commentcode( $text, $arguments ) {
-    return "<pre>" . htmlspecialchars( print_r( $arguments, true ) ) . "</pre>";
-}
-add_filter( 'commentcode_tag_' . 'my_commentcode', 'get_my_commentcode', 10, 2 );
-```
-
 For a test, while running the above code, try inserting `<!---my_commentcode Foo="bar" numbers[ 1 ]="one" numbers[ 2 ]="two"--->` in a post.
 
 It will produce this output,
-```
+```php
 Array
 (
     [Foo] => bar

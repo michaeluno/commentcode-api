@@ -207,9 +207,12 @@ class CommentcodeAPI_Bootstrap {
      * @since       0.1.0
      */
      public function __construct() {
-         include( dirname( __FILE__ ) . '/include/function/functions.php' );
+         include( dirname( __FILE__ ) . '/include/main/CommentcodeAPI_Callable.php' );
          include( dirname( __FILE__ ) . '/include/main/CommentcodeAPI_Main.php' );
-         include( dirname( __FILE__ ) . '/include/main/CommentcodeAPI_Parser.php' );
+         include( dirname( __FILE__ ) . '/include/main/CommentcodeAPI_Parser_Base.php' );
+         include( dirname( __FILE__ ) . '/include/main/CommentcodeAPI_Parser_SelfClosing.php' );
+         include( dirname( __FILE__ ) . '/include/main/CommentcodeAPI_Parser_Enclosing.php' );
+         include( dirname( __FILE__ ) . '/include/function/functions.php' );
          new CommentcodeAPI_Main;
          add_action( 'plugins_loaded', array( $this, 'replyToLoadPluginComponents' ) );
      }
@@ -222,7 +225,8 @@ class CommentcodeAPI_Bootstrap {
 
          if ( defined( 'WP_DEBUG' ) && WP_DEBUG ) {
              include( dirname( __FILE__ ) . '/include/main/CommentcodeAPI_Sample.php' );
-             new CommentcodeAPI_Sample;
+             new CommentcodeAPI_Sample( 'commentcode_selfclosing' );
+             new CommentcodeAPI_Sample( 'commentcode_enclosing' );
          }
      }
 
