@@ -8,6 +8,85 @@ It is similar to the [Shortcode API](https://codex.wordpress.org/Shortcode_API) 
 
 Since it takes a form of HTML comments, even the user disables your plugin, the embedded code will not be visible, on contrary to shortcodes that remain in posts when their plugins are deactivated. 
 
+### Features
+
+<h4>Does not leave a mess in posts</h4>
+Say, you have been using a plugin that converts a plugin specific shortcode into custom outputs. Later you found something else that is more useful and uninstalled it.
+
+But the shortcodes used by that plugin remained in hundreds of posts and it was too much work to manually delete them so you have to ask somebody to run SQL commands.
+
+That's a problem. What if the shortcode takes a form of an HTML comment? It won't leave such a mess.
+
+<h4>Syntax</h4>
+It looks like this.
+
+```php
+<!--- tag foo="bar" --->
+```
+
+```php
+<!--- tag color="#333" ---><p>Some outputs.</p><!--- /tag --->
+```
+
+Notice that tripe dashes are used in the both opening and closing part. So it won't hardly conflict with generic HTML comments.
+
+<h4>Supports Multi-dimensional Array Arguments</h4>
+The shortcode cannot pass multi-dimensional arguments to the callback function.
+
+The below attributes won't be parsed.
+
+```php
+[my_shortcode foo[1]="one" foo[2]="two"]
+```
+
+However, commentcode can handle it.
+
+```php
+<!---my_shortcode foo[1]="one" foo[2]="two" --->
+```
+
+The attributes are interpreted as
+
+```php
+array(
+    'foo'   => array(
+        1 => 'one',
+        2 => 'two',
+    )
+)
+```
+
+<h4>Preserved Letter Cases</h4>
+The shortcode does not allow capitalized attribute names.
+
+```php
+[my_shortcode CapitalName="I need it to be capitalized"]
+```
+
+The attribute is interpreted as
+
+```php
+array(
+    'capitalname' => 'I need it to be capitalized',
+)
+```
+
+This is not useful when you need to perform remote API requests which require argument names with capital letters.
+
+However, the commentcode API preserves those argument names.
+
+```php
+<!--- my_shortcode CapitalName="Please keep capitalization!" --->
+```
+
+will be
+
+```php
+array(
+    'CapitalName'   => 'Please keep capitalization!',
+)
+```
+
 ## Installation
 
 - The latest development version can be found [here](https://github.com/michaeluno/commentcode-api/branches). 
