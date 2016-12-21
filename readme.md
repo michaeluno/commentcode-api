@@ -4,7 +4,7 @@
 
 Commentcode API lets you generate custom outputs with HTML comment-like codes.  
 
-It is similar to the [shortcode API](https://codex.wordpress.org/Shortcode_API) except it takes a form of HTML comments and a few features.
+It is similar to the [Shortcode API](https://codex.wordpress.org/Shortcode_API) except it takes a form of HTML comments and a few features.
 
 Since it takes a form of HTML comments, even the user disables your plugin, the embedded code will not be visible, on contrary to shortcodes that remain in posts when their plugins are deactivated. 
 
@@ -20,10 +20,12 @@ Since it takes a form of HTML comments, even the user disables your plugin, the 
 <h4>Register a Commentcode</h4>
 
 Use the `add_commentcode()` function. It accepts two parameters.
+
 1. (string) the commentcode tag.
 2. (callable) a callback function which gets called when the commentcode of the specified tag is processed.
 
 The callback function receives three parameters.
+
 1. (string) The filtered text, usually an empty string.
 2. (array) The attributes set in the commentcode.
 3. (string) The commentcode tag name.
