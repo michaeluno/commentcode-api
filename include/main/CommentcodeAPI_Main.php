@@ -10,7 +10,7 @@ class CommentcodeAPI_Main {
      * Performs necessary set-ups.
      */
      public function __construct() {
-         add_filter( 'the_content', 'do_commentcode', 12 );
+         add_filter( 'the_content', 'do_commentcode', 8 );
          add_filter( 'commentcode_content', array( $this, 'replyToDoCommentcode' ) );
      }
 
